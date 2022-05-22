@@ -16,6 +16,16 @@ Qu’elle est la différence entre Docker et Docker compose ?
 Ici, nous allons créer notre propre image Docker, concrètement, un DockerFile définit les étapes pour créer une nouvelle image. Un dockerfile est un simple fichier texte, il contient l’ensemble des instructions et sont exécutées l’une après l’autre.
 
 
+**_Structure du projet_**
+
+
+- Installation Docker
+- Installation Docker compose
+- Configuration réseau
+- Configuration du serveur
+- Configuration du client
+- Configuration du firewall
+
 **_Configuration réseau_**
 
 Sur docker, lorsque l’on créer des containers, ils sont automatiquement mis dans le même réseau qui fonctionne en bridge, ainsi les containers devraient être capable de communiquer entre eux.
@@ -23,20 +33,13 @@ Sur docker, lorsque l’on créer des containers, ils sont automatiquement mis d
 ![image](https://user-images.githubusercontent.com/82390826/169716906-2f9242ce-5a95-440a-b45c-631fa86a98c1.png)
 
 
-Vous trouverez dans ce dossier un container Docker permettant de mettre en place des règles iptables et de tester ces règles la à partir d'un client et d'un serveur
-
-Structure du projet :
-
-- Installation Docker
-- Installation Docker compose
-- Configuration du serveur
-- Configuration du client
-- Configuration du firewall
 
 _Docker-compose.yml_
 
 ![image](https://user-images.githubusercontent.com/82390826/169716135-ae5363ab-e80a-460b-b1c6-fc1043bc71a4.png)
 
+
+**_Mise en place du serveur_**
 
 _Index.html_
 
@@ -46,6 +49,10 @@ _Dockerfile_
 
 ![image](https://user-images.githubusercontent.com/82390826/169716259-815f7765-ffa7-466c-a294-3ee63592f329.png)
 
+
+`sudo docker build  -t apache-server:v1 .`
+
+`docker run -it -p 1313:1313 apache-server:v1`
 
 **_Création du client_**
 
@@ -61,6 +68,9 @@ Arboresence du client :
 
 
 ![image](https://user-images.githubusercontent.com/82390826/169716508-3a4c6ffc-f67a-4c71-9eae-f42c495bac6c.png)
+
+**_Firewall_**
+
 
 Voici maintenant les scripts à créer afin de faire fonctionner iptables comme désirer : 
 
@@ -79,5 +89,7 @@ Lancement du projet sur Docker :
 Afin de lancer le projet sur docker, il faut faire appel à la commande suivante :
 
 _docker-compose build_
+
+
 
       
